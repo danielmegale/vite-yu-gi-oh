@@ -1,33 +1,25 @@
 <script>
-import axios from 'axios';
+import AppMain from'./components/AppMain.vue';
 import {store} from './assets/data/store.js' 
 export default{
-  created(){
-    this.getPokemon();
-  },
-    data(){
+  components:{ AppMain },
+  data(){
       return{
         store
       }
     },
-    methods:{
-      getPokemon(){
-        axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?eq[type1]=Electric&sort[number]=desc')
-        .then((res)=>{
-          res.data.docs.forEach(doc => {
-          this.store.pokemons.push(doc)
-          });
-        })
-      }
-    }
 }
 </script>
 
 
 <template>
-<p v-for="pokemon in store.pokemons">{{pokemon.name}}</p>
+ <AppMain :store="store"/>
 </template>
 
 <style>
-
+body{
+  background-image: url(./assets/img/5818392.jpg);
+  background-repeat: no-repeat;
+  height: 100vh;
+}
 </style>
