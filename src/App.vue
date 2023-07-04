@@ -13,10 +13,18 @@ export default{
     },
   methods:{
     oneChange(term){
-      const selectType=`https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?eq[type1]=${term}`;
-      axios.get(selectType).then((res)=>{
-        this.store.pokemons=res.data.docs
-      })
+      let selectType='';
+      if(term==='all'){
+        selectType=endpoint;
+        axios.get(selectType).then((res)=>{
+          this.store.pokemons=res.data.docs
+        })
+      }else{
+        selectType=`https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?eq[type1]=${term}`;
+        axios.get(selectType).then((res)=>{
+          this.store.pokemons=res.data.docs
+        })
+      }
     },
   }
 }
