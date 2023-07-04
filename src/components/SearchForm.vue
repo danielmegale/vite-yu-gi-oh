@@ -1,18 +1,33 @@
 <script>
+import axios from 'axios';
+import {store} from '../assets/data/store.js';
+
 export default{
     data(){
         return{
             searchTerm:'',
+            store,
         }
     },
-    emits:['term-change']
+    emits:['term-change','form-submit'],
+    methods:{
+        submitForm(){
+            this.$emit('form-submit',this.searchTerm)
+        },
+        resetForm(){
+            this.searchTerm='';
+            this.submitForm();
+        },
+    }
 };
 </script>
 
 
 <template>
     <form action="">
-        <input type="text" id="" v-model.trim="searchTerm" @keyup="$emit('term-change',searchTerm)">
+        <select v-model="searchTerm" @change="$emit('form-submit',searchTerm)">
+            <option v-for="typology in store.types">{{typology}}</option>
+        </select>
     </form>
 </template>
 
