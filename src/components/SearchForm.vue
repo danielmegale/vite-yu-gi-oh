@@ -26,8 +26,8 @@ export default{
 <template>
     <form action="">
         <select v-model="searchTerm" @change="$emit('form-submit',searchTerm)">
-            <option v-for="typology in store.types" :value="typology">{{typology}}</option>
             <option value="all">All</option>
+            <option v-for="typology in store.types" :value="typology">{{typology}}</option>
         </select>
     </form>
 </template>
