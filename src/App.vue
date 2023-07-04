@@ -1,18 +1,26 @@
 <script>
 import AppMain from'./components/AppMain.vue';
-import {store} from './assets/data/store.js' 
+import {store} from './assets/data/store.js';
+import SearchForm from './components/SearchForm.vue';
 export default{
-  components:{ AppMain },
+  components:{ AppMain,SearchForm },
   data(){
       return{
-        store
+        store,
+        selectionType:''
       }
     },
+  methods:{
+    oneTermChange(term){
+      this.selectionType=term;
+    }
+  }
 }
 </script>
 
 
 <template>
+  <SearchForm @term-change="onTermChange"/>
  <AppMain :store="store"/>
 </template>
 
